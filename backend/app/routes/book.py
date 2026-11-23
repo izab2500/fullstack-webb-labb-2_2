@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 
-from app.crud.book import create_book, get_books, get_book, update_book
+from app.crud.book import create_book, get_books, get_book, update_book, delete_book
 from app.database.connection import get_db
 from app.schemas.book import BookCreate, BookResponse
 
@@ -38,3 +38,13 @@ def update_book_route(book_id: int, book_data: BookCreate, db: Session = Depends
         raise HTTPException(status_code=404, detail="Book not found.")
 
     return book
+
+# Delete an existing book
+@router.delete("/{book_id}", status_code=204)
+def delete_book_route(book_id: int, db: Session = Depends(get_db)):
+    deleted = delete_book(db, book_id)
+
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Book not found")
+
+    return Response(status_code=204)

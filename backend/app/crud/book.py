@@ -37,3 +37,15 @@ def update_book(db: Session, book_id: int, book_data: BookCreate):
     db.refresh(db_book)
 
     return db_book
+
+# Delete an existing book
+def delete_book(db: Session, book_id: int):
+    db_book = db.get(Book, book_id)
+
+    if db_book is None:
+        return None
+
+    db.delete(db_book)
+    db.commit()
+
+    return True
