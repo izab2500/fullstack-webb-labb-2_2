@@ -7,11 +7,11 @@ API:et är utvecklat med FastAPI och används för att hantera böcker genom CRU
 
 | Metod  | Endpoint         | Handling            | Konsekvens                  | 
 |--------|------------------|---------------------|-----------------------------|
-| GET    | /books           | Läsa (plural)       | Hämtar alla böcker          | 
-| GET    | /books/{book_id} | Läsa (singular)     | Hämtar en befintlig bok     |
-| POST   | /books           | Skapa (singular)    | Skapar en ny bok            |
-| PUT    | /books/{book_id} | Updatera (singular) | Uppdaterar en befintlig bok |
-| DELETE | /books/{book_id} | Radera (singular)   | Raderar en befintlig bok    |
+| GET    | /books           | Läsa                | Hämtar alla böcker          | 
+| GET    | /books/{book_id} | Läsa                | Hämtar en befintlig bok     |
+| POST   | /books           | Skapa               | Skapar en ny bok            |
+| PUT    | /books/{book_id} | Updatera            | Uppdaterar en befintlig bok |
+| DELETE | /books/{book_id} | Radera              | Raderar en befintlig bok    |
 
 ## Krav för att köra projektet
 
@@ -102,4 +102,4 @@ python -m uvicorn app.main:app --reload
 
 ## Videodemostration
 
-[länk text](url)
+[videodemonstration](https://www.youtube.com/watch?v=kdushJMMcQo)

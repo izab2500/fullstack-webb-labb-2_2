@@ -16,6 +16,8 @@ class BookCreate(BaseModel):
         if not value:
             raise ValueError("Field cannot be empty or contain only whitespace")
 
+        return value
+
 
 # Data returned when a book is requested
 class BookResponse(BookCreate):
