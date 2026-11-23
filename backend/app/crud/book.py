@@ -18,3 +18,7 @@ def create_book(db: Session, book: BookCreate):
 # Get all books
 def get_books(db: Session):
     return db.scalars(select(Book)).all()
+
+# Get an existing book
+def get_book(db:Session, book_id: int):
+    return db.get(Book, book_id)
