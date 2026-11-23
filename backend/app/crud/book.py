@@ -1,3 +1,4 @@
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models.book import Book
@@ -13,3 +14,7 @@ def create_book(db: Session, book: BookCreate):
     db.refresh(db_book)
 
     return db_book
+
+# Get all books
+def get_books(db: Session):
+    return db.scalars(select(Book)).all()
