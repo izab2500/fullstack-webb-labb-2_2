@@ -22,3 +22,18 @@ def get_books(db: Session):
 # Get an existing book
 def get_book(db:Session, book_id: int):
     return db.get(Book, book_id)
+
+# Update an existing book
+def update_book(db: Session, book_id: int, book_data: BookCreate):
+    db_book = db.get(Book, book_id)
+
+    if db_book is None:
+        return None
+
+    for key, value in book_data.model_dump().items():
+        setattr(db_book, key, value)
+
+    db.commit()
+    db.refresh(db_book)
+
+    return db_book
