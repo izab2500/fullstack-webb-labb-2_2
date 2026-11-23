@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 # Data needed to create a book
@@ -7,6 +7,14 @@ class BookCreate(BaseModel):
     author: str = Field(min_length=1, max_length=255)
     publication_year: int = Field(gt=0)
     is_read: bool = False
+
+    @field_validator("title", "author")
+    @classmethod
+    def validate_text(cls, value: str) -> str:
+        value = value.strip()
+
+        if not value:
+            raise ValueError("Field cannot be empty or contain only whitespace")
 
 
 # Data returned when a book is requested
